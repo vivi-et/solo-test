@@ -1,0 +1,30 @@
+{{!< main}}
+
+<form class="ui form" action="/design/add" method="POST" enctype="multipart/form-data">
+  <h1>디자인 등록</h1>
+  <br>
+  <input type="file" placeholder="main image">
+  <br>
+  <br>
+  카테고리
+  <br><br>
+  <div class="fields">
+    <div class="field">
+      <label>카테고리 1</label>
+      <select class="ui search dropdown">
+        <option value="">디자인</option>
+        <option value="AF">디자인2</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>카테고리 2</label>
+      <select class="ui search dropdown">
+        <option value="1">1.로고</option>
+        <option value="2">2.홍보영상</option>
+        <option value="3">3.유튜버/방송영상</option>
+        <option value="4">4.SNS소셜미디어/게시물</option>
+      </select>
+    </div>
+
+  </div>
+</form>

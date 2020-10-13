@@ -1,0 +1,98 @@
+{{!< main}}
+<form class="ui form" action="/design/add" method="POST">
+  <div class="order_list">
+    <h1>Add Product</h1>
+    <br>
+    {{!-- <input type="file" name="image_main" placeholder="main image"> --}}
+    <br>
+    <br>
+    Catagory 1
+    <br><br>
+
+    <div class="fields">
+      <div class="field">
+        <label>Category 1</label>
+        <select data-item="1" class="ui search dropdown" name="category1_1">
+          <option value="A1">category1_1_A1</option>
+          <option value="AF">category1_1_A2</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Category 2</label>
+        <select data-item="1" class="ui search dropdown" name="category1_2">
+          <option value="1">1.category1_2.A1</option>
+          <option value="2">2.category1_2.A2</option>
+          <option value="3">3.category1_2.A3</option>
+          <option value="4">4.category1_2.A4</option>
+        </select>
+      </div>
+      <div class="field" id="category3">
+        <label>Category 3</label>
+        <select data-item="1" class="ui search dropdown" name="category1_3">
+          <option value="1">1.category1_3.A1</option>
+          <option value="2">2.category1_3.A2</option>
+          <option value="3">3.category1_3.A3</option>
+          <option value="4">4.category1_3.A4</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <input data-item="1" type="text" placeholder="design_name" name="design_name1">
+    </div>
+
+    <select data-item="1" multiple="" class="ui fluid dropdown" name="skills1">
+      <option value="1">design_name1_A1</option>
+      <option value="2">design_name1_A2</option>
+      <option value="3">design_name1_A3</option>
+      <option value="4">design_name1_A4</option>
+
+    </select>
+    <br><br>
+  </div>
+  <button type="submit">submit</button>
+</form>
+<br><br>
+<button class="ui green large button" onclick="addform()">+</button>
+<button onclick="a()">TEST</button>
+<script>
+  const formsLimit = 5;
+  let forms = 1;
+
+  
+  function a() {
+
+
+
+    for (let i = 0; i < forms; i++) {
+      let b = $(`[data-item="${forms}"]`).serializeArray();
+      console.log(b);
+    }
+
+
+  }
+
+
+  $(document).ready(function () {
+    $('.ui.dropdown')
+      .dropdown();
+  });
+
+  function addform() {
+    forms += 1;
+    console.log(forms);
+
+    if (forms > formsLimit) {
+      forms = formsLimit
+      return alert(`${forms} only!`);
+    }
+
+    const html = `{{> form}}`;
+
+
+    $('.order_list').append(html)
+    $('.ui.dropdown').dropdown();
+  }
+
+
+</script>

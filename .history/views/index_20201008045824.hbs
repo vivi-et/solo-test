@@ -1,0 +1,12 @@
+{{!< main}}
+<h1>
+  {{!-- Hi {{session.user.dataValues.username}} --}}
+  Hi {{user.username}}
+</h1>
+<form action="/auth/logout" method="DELETE">
+  <button class="ui button" type="submit">로그아웃</button>
+</form>
+
+<br><br>
+
+<div class="ui button"></div>

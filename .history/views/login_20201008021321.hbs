@@ -1,0 +1,33 @@
+<h1>Login</h1>
+{{#each errors}}
+<div class="error">
+  <p>{{text}}</p>
+</div>
+{{/each}}
+<form action="/auth/login" method="POST">
+  <table style="width: 100%;">
+    <tr>
+      <td> Username </td>
+      <td> <input type="text" id="username" name="username" required> </td>
+    </tr>
+    <tr>
+      <td> Password </td>
+      <td> <input type="password" id="password" name="password" required> </td>
+    </tr>
+  </table>
+  <br>
+        <button style="width: 100%;" type="submit">Login</button>
+</form>
+<br>
+<a href="/auth/register"><button style="width: 100%;">Register</button></a>
+
+<style>
+  tr td:first-child {
+    width: 12%;
+  }
+
+  button{
+    width:60%;
+    height: 10%;
+  }
+</style>

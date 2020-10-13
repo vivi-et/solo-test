@@ -1,0 +1,34 @@
+{{!< main}}
+
+
+
+<form class="ui form" method="POST" action="/notice/add">
+  <div class="field">
+    <label>Title</label>
+    <input type="text" name="first-name" placeholder="Title">
+  </div>
+  <div class="field">
+    <label>Content</label>
+    <input id="editorjs" type="text" name="last-name" placeholder="Last Name">
+  </div>
+
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+
+<script>
+  const editor = new EditorJS({
+    autofocus: true,
+    tools: {
+      image: {
+        class: SimpleImage,
+        inlineToolbar: true,
+        config: {
+          placeholder: 'Paste image URL'
+        }
+      }
+    },
+  });
+
+</script>

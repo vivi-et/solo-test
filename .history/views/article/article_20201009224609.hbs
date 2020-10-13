@@ -1,0 +1,51 @@
+{{!< main}}
+
+
+
+<form class="ui form" method="POST" action="/notice/add" enctype="multipart/form-data">
+  <div class="field">
+    <label>Title</label>
+    <input type="text" name="title" placeholder="Title">
+    <br>
+    <br>
+    <label>Text</label>
+    <textarea name="text" placeholder="Text">
+  </textarea>
+  </div>
+      <div class="field">
+    <label>File</label>
+    </div>
+  <div class="ui action input">
+    <input type="text" placeholder="Image" readonly>
+    <input type="file" name="file1">
+    <div class="ui icon button">
+      <i class="attach icon"></i>
+    </div>
+  </div>
+  
+  <br><br>
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+<script>
+  $("input:text").click(function() {
+  $(this).parent().find("input:file").click();
+});
+
+$('input:file', '.ui.action.input')
+  .on('change', function(e) {
+    var name = e.target.files[0].name;
+    $('input:text', $(e.target).parent()).val(name);
+  });
+
+</script>
+
+<style>
+  body {
+  padding: 1em;
+}
+
+.ui.action.input input[type="file"] {
+  display: none;
+}
+</style>

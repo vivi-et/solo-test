@@ -1,0 +1,52 @@
+{{!< main}}
+<h1>Article home</h1>
+
+
+<br>
+<br>
+<div class="ui centered grid">
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Title</th>
+      {{!-- <th>Text</th> --}}
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each articles.rows}}
+    <tr>
+      <td>{{id}}</td>
+      <td>{{user.username}}</td>
+      <td><a href="/article/view/{{id}}">{{title}}</a></td>
+      {{!-- <td>{{text}}</td> --}}
+      <td>{{moments}}</td>
+    </tr>
+    {{/each}}
+
+  </tbody>
+</table>
+</div>
+<div class="ui pagination menu">
+  <a class="item">
+    <-
+  </a>
+  {{#each articles.index as |key|}}
+  <a class="item" href="/article/{{key}}">
+    {{key}}
+  </a>
+  {{/each}}
+  <a class="item">
+    ->
+  </a>
+</div>
+<a href="article/add">
+  <br>
+  <br>
+  <div class="ui button blue">Add Article</div>
+</a>
+<br>
+<br>
+<br>

@@ -1,0 +1,10 @@
+{{!< main}}
+<h1>    
+  Hi     
+  {{#if session}}
+  {{session}}
+  {{/if}}
+  </h1>
+<form action="/auth/logout" method="DELETE">
+  <button type="submit">Log Out</button>
+</form>

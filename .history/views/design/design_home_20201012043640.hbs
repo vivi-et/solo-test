@@ -1,0 +1,148 @@
+{{!< main}}
+<form class="ui form" action="/design/add" method="POST">
+  <div class="order_list">
+    <h1>디자인 등록</h1>
+    <br>
+    {{!-- <input type="file" name="image_main" placeholder="main image"> --}}
+    <br>
+    <br>
+    카테고리
+    <br><br>
+
+    <div class="fields">
+      <div class="field">
+        <label>카테고리 1</label>
+        <select class="ui search dropdown" name="category1">
+          <option value="">디자인</option>
+          <option value="AF">디자인2</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>카테고리 2</label>
+        <select class="ui search dropdown" name="category2">
+          <option value="1">1.로고</option>
+          <option value="2">2.홍보영상</option>
+          <option value="3">3.유튜버/방송영상</option>
+          <option value="4">4.SNS소셜미디어/게시물</option>
+        </select>
+      </div>
+      <div class="field" id="category3">
+        <label>카테고리 3</label>
+        <select class="ui search dropdown" name="category3">
+          <option value="1">1.문양로고</option>
+          <option value="2">2.글자로고</option>
+          <option value="3">3.그림로고</option>
+          <option value="4">4.그림+글자로고</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="design_name" name="design_name">
+    </div>
+
+    <select name="skills" multiple="" class="ui fluid dropdown">
+      <option value="">Skills</option>
+      <option value="angular">Angular</option>
+      <option value="css">CSS</option>
+      <option value="design">Graphic Design</option>
+      <option value="ember">Ember</option>
+      <option value="html">HTML</option>
+      <option value="ia">Information Architecture</option>
+      <option value="javascript">Javascript</option>
+      <option value="mech">Mechanical Engineering</option>
+      <option value="meteor">Meteor</option>
+      <option value="node">NodeJS</option>
+      <option value="plumbing">Plumbing</option>
+      <option value="python">Python</option>
+      <option value="rails">Rails</option>
+      <option value="react">React</option>
+      <option value="repair">Kitchen Repair</option>
+      <option value="ruby">Ruby</option>
+      <option value="ui">UI Design</option>
+      <option value="ux">User Experience</option>
+    </select>
+    <br><br>
+  </div>
+  <button type="submit">발사</button>
+</form>
+<br><br>
+<button class="ui green large button" onclick="addform()">+</button>
+
+<script>
+
+  $(document).ready(function () {
+    $('.ui.dropdown')
+      .dropdown();
+  });
+
+  function addform() {
+
+    const html = `<h1>디자인 등록</h1>
+    <br>
+    {{!-- <input type="file" name="image_main" placeholder="main image"> --}}
+    <br>
+    <br>
+    카테고리
+    <br><br>
+
+    <div class="fields">
+      <div class="field">
+        <label>카테고리 1</label>
+        <select class="ui search dropdown" name="category1">
+          <option value="">디자인</option>
+          <option value="AF">디자인2</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>카테고리 2</label>
+        <select class="ui search dropdown" name="category2">
+          <option value="1">1.로고</option>
+          <option value="2">2.홍보영상</option>
+          <option value="3">3.유튜버/방송영상</option>
+          <option value="4">4.SNS소셜미디어/게시물</option>
+        </select>
+      </div>
+      <div class="field" id="category3">
+        <label>카테고리 3</label>
+        <select class="ui search dropdown" name="category3">
+          <option value="1">1.문양로고</option>
+          <option value="2">2.글자로고</option>
+          <option value="3">3.그림로고</option>
+          <option value="4">4.그림+글자로고</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="design_name" name="design_name">
+    </div>
+
+    <select name="skills" multiple="" class="ui fluid dropdown">
+      <option value="">Skills</option>
+      <option value="angular">Angular</option>
+      <option value="css">CSS</option>
+      <option value="design">Graphic Design</option>
+      <option value="ember">Ember</option>
+      <option value="html">HTML</option>
+      <option value="ia">Information Architecture</option>
+      <option value="javascript">Javascript</option>
+      <option value="mech">Mechanical Engineering</option>
+      <option value="meteor">Meteor</option>
+      <option value="node">NodeJS</option>
+      <option value="plumbing">Plumbing</option>
+      <option value="python">Python</option>
+      <option value="rails">Rails</option>
+      <option value="react">React</option>
+      <option value="repair">Kitchen Repair</option>
+      <option value="ruby">Ruby</option>
+      <option value="ui">UI Design</option>
+      <option value="ux">User Experience</option>
+    </select>
+    <br><br>`;
+
+
+    $('.ui.dropdown').dropdown();
+    $('.order_list').append(html)
+  }
+</script>

@@ -1,0 +1,23 @@
+{{!< main}}
+
+<form class="ui form" action="/design/add" method="POST" enctype="multipart/form-data">
+<h1>디자인 등록</h1>
+<br>
+<input type="file" placeholder="main image">
+<br>
+<br>
+카테고리
+<div class="field">
+      <label>디자인</label>
+      <div class="ui selection dropdown">
+          <input type="hidden" name="gender">
+          <i class="dropdown icon"></i>
+          <div class="default text">Gender</div>
+          <div class="menu">
+              <div class="item" data-value="1">Male</div>
+              <div class="item" data-value="0">Female</div>
+          </div>
+      </div>
+  </div>
+
+</form>

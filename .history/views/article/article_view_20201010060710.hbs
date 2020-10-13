@@ -1,0 +1,22 @@
+{{!< main}}
+
+
+
+{{article.title}}
+<br>
+{{article.text}}
+
+<br>
+{{!-- <img class="ui centered tiny image" src="/uploads/imgs/article/{{article.image}}" alt="" srcset="">
+<img class="ui centered small image" src="/uploads/imgs/article/{{article.image}}" alt="" srcset="">
+<img class="ui centered large image" src="/uploads/imgs/article/{{article.image}}" alt="" srcset="">
+<img class="ui  huge image" src="/uploads/imgs/article/{{article.image}}" alt="" srcset=""> --}}
+
+<br>
+{{#if article.image}}
+{{#each article.image}}
+{{article.image}}
+<img class="ui centered tiny image" src="/uploads/imgs/article/{{filename}}">
+<br>
+{{/each}}
+{{/if}}

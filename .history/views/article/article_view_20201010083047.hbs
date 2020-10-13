@@ -1,0 +1,24 @@
+{{!< main}}
+
+
+
+{{article.title}}
+<br>
+{{article.text}}
+
+<br>
+
+<br>
+{{#if article.image}}
+{{#each article.image}}
+{{filename}}
+<img class="ui centered tiny image" src="/uploads/imgs/article/{{filename}}">
+<br>
+{{/each}}
+{{/if}}
+
+{{#if article.owner}}
+<form action="/article/{{article.id}}?_method=DELETE" method="POST">
+<button class="ui negative button huge" type="submit">DELETE</button>
+</form>
+{{/if}}
