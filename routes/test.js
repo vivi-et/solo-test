@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  Test.findByPk(7).then((result) => {
+  Test.findByPk(9).then((result) => {
     // data[0].data.forEach((element) => {
     //   console.log(element);
     // });

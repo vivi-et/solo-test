@@ -208,6 +208,9 @@ router.post('/add', (req, res) => {
   upload(req, res, async (err) => {
     const { title, text } = req.body;
 
+    console.log(req.body);
+    
+
     const tempArticle = {
       title,
       text,

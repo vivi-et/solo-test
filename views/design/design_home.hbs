@@ -1,148 +1,268 @@
 {{!< main}}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<form class="ui form" action="/design/add" method="POST">
+
+<form class="ui form" id="form" action="/design/test" method="POST" enctype="multipart/form-data">
+
+
+
   <div class="order_list">
     <h1>Add Product</h1>
-    <br>
-    {{!-- <input type="file" name="image_main" placeholder="main image"> --}}
-    <br>
-    <br>
-    Category 1
     <br><br>
-
-    <div class="fields">
-      <div class="field">
-        <label>Category 1</label>
-        <select data-item="1" class="ui search dropdown" name="category1">
-          <option value="category1_A1">category1_A1</option>
-          <option value="category1_A2">category1_A2</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Category 2</label>
-        <select data-item="1" class="ui search dropdown" name="category2">
-          <option value="category2_A1">1.category2_A1</option>
-          <option value="category2_A2">2.category2_A2</option>
-          <option value="category2_A3">3.category2_A3</option>
-          <option value="category2_A4">4.category2_A4</option>
-        </select>
-      </div>
-      <div class="field" id="category3">
-        <label>Category 3</label>
-        <select data-item="1" class="ui search dropdown" name="category3">
-          <option value="category3_A1">1.category3_A1</option>
-          <option value="category3_A2">2.category3_A2</option>
-          <option value="category3_A3">3.category3_A3</option>
-          <option value="category3_A4">4.category3_A4</option>
-        </select>
-      </div>
+    <div id="mainoption">
+      {{> design_form_main}}
     </div>
-
-    <div class="field">
-      <input data-item="1" type="text" placeholder="design_name" name="design_name">
+    <br>
+    <div id="option">
+      {{!-- design_form_options appended here --}}
     </div>
-
-    <select data-item="1" multiple="" class="ui fluid dropdown" name="skills">
-      <option value="design_name1_A1">design_name1_A1</option>
-      <option value="design_name1_A2">design_name1_A2</option>
-      <option value="design_name1_A3">design_name1_A3</option>
-      <option value="design_name1_A4">design_name1_A4</option>
-
-    </select>
+    <button class="ui teal fluid button" onclick="addOption(); event.preventDefault(); "
+      style="height: 4em; border-radius: 0 0 10px 10px;">
+      옵션추가
+    </button>
     <br><br>
   </div>
-  <button type="submit">submit</button>
+
+  <input name="mainformval" id="mainformval" hidden>
+  <input name="suboptionformval" id="suboptionformval" hidden>
+
 </form>
 <br><br>
-<button class="ui green large button" onclick="addform()">+</button>
+
 <button onclick="test()">TEST</button>
+
+<br><br><br>
+
+<button onclick="event.preventDefault(); submit();">SUBMIT</button>
 <script>
 
-  const formsLimit = 5;
-  let forms = 1;
+  const optionsLimit = 5;
+  const suboptionsLimit = 5;
+  const subOptionCountArr = [];
+  let thisOptionNo = 0;
+  let newOptionNo = 0;
+  let thisSubOptionNo = 0;
 
-  (function ($, undefined) {
-    '$:nomunge'; // Used by YUI compressor.
-    $.fn.serializeObject = function () {
-      var obj = {};
-      $.each(this.serializeArray(), function (i, o) {
-        var n = o.name,
-          v = o.value;
-        obj[n] = obj[n] === undefined ? v
-          : $.isArray(obj[n]) ? obj[n].concat(v)
-            : [obj[n], v];
-      });
-      return obj;
-    };
-  })(jQuery);
-
-  function test() {
-
-    const dataArr = [];
-    for (let i = 0; i < forms; i++) {
-      console.log(i);
-
-      let formData = $(`[data-item="${i + 1}"]`).serializeObject();
-
-
-
-      dataArr.push(formData);
-
-
-    }
-
-    console.log(dataArr);
-    axios.post('/test', {
-      data: dataArr
-    })
-      .then((response) => {
-
-        const { data } = response;
-        console.log('axois response ', data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
-  }
-  function tem() {
-
-    axios.post('/test', {
-      data: dataArr
-    })
-      .then((response) => {
-
-        const { data } = response;
-        console.log('axois response ', data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
+  let i_ = 0;
+  while (i_ < suboptionsLimit) {
+    subOptionCountArr.push(0)
+    i_++;
   }
 
-  $(document).ready(function () {
+  console.log(subOptionCountArr);
+
+
+  //SERIALIZEOBJECT(),  TRAMSFORM FORM DATA TO JSON OBJECT
+  $.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+      if (o[this.name] !== undefined) {
+        if (!o[this.name].push) {
+          o[this.name] = [o[this.name]];
+        }
+        o[this.name].push(this.value || '');
+      } else {
+        o[this.name] = this.value || '';
+      }
+    });
+    return o;
+  };
+
+  //APPLY FORMANTIC UI SETTINGS TO APPENDED FORMS
+  function applyDropdownSettings(item) {
     $('.ui.dropdown')
-      .dropdown();
+      .dropdown({
+        maxSelections: 2
+      });
+
+  }
+
+
+  // ONREADY
+  $(document).ready(function () {
+
+    addOption();
+    applyDropdownSettings();
+
+    var last_valid_selection = null;
+
+    $('.dropdown').change(function (event) {
+
+      console.log(this);
+
+
+      if ($(this).val().length > 2) {
+
+        $(this).val(last_valid_selection);
+      } else {
+        last_valid_selection = $(this).val();
+      }
+    });
   });
 
-  function addform() {
-    forms += 1;
-    console.log(forms);
-
-    if (forms > formsLimit) {
-      forms = formsLimit
-      return alert(`${forms} only!`);
+  // APPEND OPTION FORM
+  function addOption() {
+    console.log(newOptionNo);
+    if (newOptionNo > optionsLimit) {
+      newOptionNo = optionsLimit
+      return alert(`${newOptionNo} only!`);
     }
-
-    const html = `{{> form}}`;
-
-
-    $('.order_list').append(html)
-    $('.ui.dropdown').dropdown();
+    const html = `{{> design_form_option}}`;
+    $('#option').append(html)
+    applyDropdownSettings();
+    newOptionNo++;
+    return false;
   }
 
+
+  //DELETE OPTION
+  function deleteoption(option) {
+
+    const thisoption = $(option).closest('div.optioncontainer');
+    const thisoptionnumber = $(option).closest('div.optioncontainer').attr('data-item');
+
+
+
+    console.log(`thisoptionnumber : ${thisoptionnumber}`);
+
+
+
+    $(thisoption).remove();
+    newOptionNo--;
+
+    //CHANGE(PULL) ALL DATA-ITEM
+    $("[data-item]").each(function () {
+      let datano = $(this).attr('data-item');
+      if (datano > thisoptionnumber) {
+
+        $(this).attr('data-item', `${datano - 1}`);
+        $(this).attr('optionid', `${datano - 1}`);
+      }
+    });
+
+
+    //cHANGE(PULL) ALL DATA-OPTION FOR SUBOPTIONS
+    $("[data-option]").each(function () {
+      let datano = $(this).attr('data-option');
+      if (datano > thisoptionnumber) {
+
+        $(this).attr('data-option', `${datano - 1}`);
+      }
+    });
+
+
+
+
+    // CHANGE(PULL) OTHER OPTIONCONTAINERS
+    $("div[id*='optioncontainer']").each(function () {
+      let dataval = $(this).attr('data-item');
+      $(this).attr("id", `optioncontainer${dataval}`);
+    })
+
+    // CHANGE(PULL) OTHER OPTIONIDS
+    $("div[id*='optionid']").each(function () {
+
+      let index = $(this).attr('data-item');
+      console.log(`index index index ${index}`);
+
+
+      $(this).text(index).attr('id', `optionid${index}`)
+    });
+
+
+
+
+  }
+
+  //SUBMIT FORM
+  function submit() {
+
+
+    // const dataArr = [];
+    let optionArr = [];
+    let subOptionDataArr = [];
+
+    let mainFormData = $(`[data-main="0"]`).serializeObject();
+
+
+    for (let i = 0; i < newOptionNo; i++) {
+      console.log(i);
+      let formData = $(`[data-item="${i}"]`).serializeObject();
+
+      for (let j = 0; j < subOptionCountArr[i]; j++) {
+        let subData = $(`[data-option="${i}"][data-suboption="${j}"]`).serializeObject();
+        console.log(`subData${i}-${j} : ${subData}`);
+
+        subOptionDataArr.push(subData);
+      }
+
+      console.log(`subOptionDataArr${i}: ${subOptionDataArr}`);
+
+
+      formData.suboptions = subOptionDataArr;
+      optionArr.push(formData);
+      console.log(optionArr);
+      subOptionDataArr = [];
+    }
+
+
+    mainFormData.options = optionArr;
+    // dataArr.push(mainFormData);
+
+
+    let a = JSON.stringify(mainFormData);
+
+    $('#mainformval').val(`${a}`);
+
+    $('#form').submit();
+
+  }
+
+  //ADD SUBOPTION
+  function addsuboption(_this) {
+    thisOptionNo = $(_this).closest('div.optioncontainer').attr('data-item');
+    thisSubOptionNo = subOptionCountArr[thisOptionNo];
+
+    if (thisSubOptionNo > suboptionsLimit) {
+      subOptionCountArr[thisOptionNo] = suboptionsLimit;
+      return alert(`${suboptionsLimit} only!`);
+    }
+    const html = `{{> design_form_suboption}}`;
+
+    $(_this).prev().append(html);
+    applyDropdownSettings();
+    subOptionCountArr[thisOptionNo]++;
+    return true;
+  }
+
+  //DELETE SUBOPTION
+  function deletesuboption(_this) {
+
+    const thisOptionNo = $(_this).attr('data-option');
+    const thisSubOptionNo = $(_this).attr('data-suboption');
+
+    let currentSubOptionArr = subOptionCountArr[thisOptionNo];
+
+    let a = $(`div.suboptioncontainer[data-option="${thisOptionNo}"][data-suboption="${thisSubOptionNo}"]`).remove();
+    subOptionCountArr[thisOptionNo]--;
+
+
+    // CHANGE OTHER DATA_SUBOPTIONS
+    $(`[data-option="${thisOptionNo}"]`).each(function () {
+      let eachSubOptionNo = $(this).attr('data-suboption');
+
+
+      if (eachSubOptionNo > thisSubOptionNo) {
+        console.log(`eachSubOptionNo : ${eachSubOptionNo--}`);
+
+        $(this).attr("data-suboption", `${eachSubOptionNo--}`);
+      }
+    });
+
+    console.log(subOptionCountArr[thisOptionNo]);
+
+
+  }
 
 </script>
