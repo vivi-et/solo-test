@@ -101,7 +101,7 @@
     console.log(newOptionNo);
     if (newOptionNo > optionsLimit) {
       newOptionNo = optionsLimit
-      return alert(`5 only!`);
+      return alert(optionsLimit+1 + ` only!`);
     }
     const html = `{{> design/design_form_option}}`;
     $('#option').append(html)
@@ -222,7 +222,7 @@
 
     if (thisSubOptionNo > suboptionsLimit) {
       subOptionCountArr[thisOptionNo] = suboptionsLimit;
-      return alert(`5 only!`);
+      return alert(suboptionsLimit+1 +` only!`);
     }
     const html = `{{> design/design_form_suboption}}`;
 
