@@ -50,17 +50,19 @@ function checkFileType(file, cb) {
 }
 
 router.get('/view', async (req, res) => {
-  const sample = await Design.findByPk(4);
+  const sample = await Design.findAll({
+    limit: 1,
+    order: [['createdAt', 'DESC']],
+  });
 
   console.dir(sample);
 
-  res.render('design/design_view.hbs', {sample});
+  res.render('design/design_view.hbs', { sample });
 });
 
 router.get('/add', (req, res) => {
   res.render('design/design_home.hbs');
 });
-
 
 router.get('/sample', async (req, res) => {
   const sample = {
@@ -87,6 +89,7 @@ router.get('/sample', async (req, res) => {
     options: [
       {
         optiontype: 'single',
+        isrequired: "on",
         optionname: '옵션명옵션명옵션명옵션명옵션명옵션명옵션명옵션명',
         optiondescription: '안내문안내문안내문안내문안내문안내문',
         suboptions: [
@@ -97,6 +100,7 @@ router.get('/sample', async (req, res) => {
       },
       {
         optiontype: 'multiple',
+        isrequired: "on",
         optionname: 'ㅁㅁㅁㅁㅁㅁㅁㅁㅁ',
         optiondescription: 'ㅠㅠㅠㅠ',
         suboptions: [
