@@ -57,33 +57,10 @@ router.get('/view', async (req, res) => {
   res.render('design/design_view.hbs', {sample});
 });
 
-router.get('/', (req, res) => {
+router.get('/add', (req, res) => {
   res.render('design/design_home.hbs');
 });
 
-router.post('/add', (req, res) => {
-  res.send(req.body);
-  // destructuring data
-  // const {
-  //   catagory1_1,
-  //   catagory1_2,
-  //   catagory1_3,
-  //   design_name1,
-  //   skills1,
-
-  //   ...
-
-  //   catagoryN_1
-  //   catagoryN_2
-  //   catagoryN_3,
-  //   design_nameN,
-  //   skillsN
-  // } = req.body;
-
-  // somehow seperate them into JSON array of objects
-
-  // ... other code
-});
 
 router.get('/sample', async (req, res) => {
   const sample = {
@@ -143,7 +120,7 @@ router.get('/sample', async (req, res) => {
   res.send(result);
 });
 
-router.post('/test', (req, res) => {
+router.post('/add', (req, res) => {
   upload(req, res, async (err) => {
     const { data } = req.body;
     const subImagesArr = [];

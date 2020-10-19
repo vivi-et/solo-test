@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
-<form class="ui form" id="form" action="/design/test" method="POST" enctype="multipart/form-data">
+<form class="ui form" id="form" action="/design/add" method="POST" enctype="multipart/form-data">
 
 
 
@@ -16,26 +16,19 @@
     <div id="option">
       {{!-- design_form_options appended here --}}
     </div>
-    <button class="ui teal fluid button" onclick="addOption(); event.preventDefault(); "
+    <button class="ui teal button" onclick="addOption(); event.preventDefault(); "
       style="height: 4em; border-radius: 0 0 10px 10px;">
       옵션추가
     </button>
-    <br><br>
   </div>
-
   <input name="mainformval" id="mainformval" hidden>
   <input name="suboptionformval" id="suboptionformval" hidden>
-
 </form>
 <br><br>
 
-<a href="/design/sample">
-<button >TEST</button>
-</a>
 
-<br><br><br>
-
-<button onclick="event.preventDefault(); submit();">SUBMIT</button>
+<button class="ui inverted fluid red large button" onclick="event.preventDefault(); submit();">등록하기</button>
+<br><br>
 <script>
 
   const optionsLimit = 5;
@@ -113,6 +106,7 @@
     const html = `{{> design/design_form_option}}`;
     $('#option').append(html)
     applyDropdownSettings();
+    $(`#addsuboption${newOptionNo}`).click();
     newOptionNo++;
     return false;
   }

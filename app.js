@@ -98,7 +98,7 @@ hbs.registerHelper('inc', function (value, options) {
   return parseInt(value) + 1;
 });
 // =============================== ROUTES ===============================
-app.get('/', (req, res) => {
+app.get('/', auth.checkAuthenticated, (req, res) => {
   res.render('index.hbs', { req });
 });
 // app.get('/', auth.checkAuthenticated, (req, res) => {
@@ -108,10 +108,10 @@ app.get('/', (req, res) => {
 app.use('/auth', require('./routes/auth'));
 // app.use('/notice', auth.checkAuthenticated, require('./routes/notice'));
 app.use('/notice', require('./routes/notice'));
-app.use('/multer', require('./routes/multer'));
-app.use('/article', require('./routes/article'));
-app.use('/design', require('./routes/design'));
-app.use('/test', require('./routes/test'));
+app.use('/multer', auth.checkAuthenticated, require('./routes/multer'));
+app.use('/article', auth.checkAuthenticated, require('./routes/article'));
+app.use('/design', auth.checkAuthenticated, require('./routes/design'));
+app.use('/test', auth.checkAuthenticated, require('./routes/test'));
 // =============================== PORT & SERVER ===============================
 
 app.set('port', 5000);

@@ -91,16 +91,14 @@
     <input data-item="${newOptionNo}" type="file" name="optionimage${newOptionNo}" onchange="handleFileSelect(this)"
       id="suboption${newOptionNo}files">
   </div>
-  <br><br>
-  <div id="suboption${newOptionNo}filesresult" class="ui small images">
-
-  </div>
-  <br><br><br>
+  <br>
+  <div id="suboption${newOptionNo}filesresult" class="ui small images"> </div>
+  <br>
   <div class="suboptionfield" test="true">
     {{!-- suboption --}}
   </div>
-  <button class="ui button" id="addsuboption${newOptionNo}" data-item="${newOptionNo}" optionid="${newOptionNo}"
-    onclick="event.preventDefault(); addsuboption(this);">ADD
-    suboption</button>
+  <button class="ui button" style="height: 4em; border-radius: 0 0 10px 10px;" id="addsuboption${newOptionNo}"
+    data-item="${newOptionNo}" optionid="${newOptionNo}" onclick="event.preventDefault(); addsuboption(this);">옵션선택항목
+    등록</button>
   <br><br>
 </div>
