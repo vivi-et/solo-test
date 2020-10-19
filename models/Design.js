@@ -7,49 +7,103 @@ const Design = db.define('design', {
     unique: true,
     primaryKey: true,
     autoIncrement: true,
+    allowNull: false,
   },
-  image_main: {
+  category1: {
     // 상품대표이미지
     type: Sequelize.STRING,
   },
-  category: {
+  category2: {
+    // 상품대표이미지
+    type: Sequelize.STRING,
+  },
+  category3: {
+    // 상품대표이미지
+    type: Sequelize.STRING,
+  },
+
+  design_name: {
+    // 상품대표이미지
+    type: Sequelize.STRING,
+  },
+  price1: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+  quantity: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+
+  timeperitem: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+
+  fee: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+
+  fixfreechance: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+  fixprice: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+  baseprice: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+  skills: {
+    // 상품대표이미지
+    type: Sequelize.JSON,
+  },
+
+  colorformat: {
+    // 상품대표이미지
+    type: Sequelize.STRING,
+  },
+
+  width: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+  height: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+  format: {
+    // 상품대표이미지
+    type: Sequelize.STRING,
+  },
+
+  dpi: {
+    // 상품대표이미지
+    type: Sequelize.INTEGER,
+  },
+
+  keyword: {
+    // 상품대표이미지
+    type: Sequelize.STRING,
+  },
+
+  maindescription: {
+    // 상품대표이미지
+    type: Sequelize.TEXT,
+  },
+
+  options: {
     // 카테고리 1>2>3 , 디자인>로고>문양로고
     type: Sequelize.JSON,
   },
-  design_name: {
-    // 상품명
+  image_main: {
     type: Sequelize.STRING,
   },
-  images_sub: {
-    // 제품 상세 이미지
-    type: Sequelize.JSON,
-  },
-  format: {
-    // 기본제공 결과물형식
-    type: Sequelize.JSON,
-  },
-  resolution: {
-    // 해상도 w, h, DPI
-    type: Sequelize.JSON,
-  },
-
-  required_time: {
-    // 소요시간, 기본작업 소요일, 빠른작업 소요일, 빠른작업 전용구간, 빠른작업시 1일당 비용, 빠른작업 가능여부
-    type: Sequelize.JSON,
-  },
-
-  search_keyword: {
-    // 검색 키워드
-    type: Sequelize.STRING,
-  },
-
-  detailed_info: {
-    // 상세 제품 안내
-    type: Sequelize.STRING,
-  },
-
-  option: {
-    // 상품 옵션 + 세부옵션
+  image_sub: {
+    // 카테고리 1>2>3 , 디자인>로고>문양로고
     type: Sequelize.JSON,
   },
 });

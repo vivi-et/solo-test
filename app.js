@@ -55,23 +55,34 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 const client = redis.createClient(6379, 'localhost');
 
-app.engine('hbs', hbs.express4({
-  partialsDir: `${__dirname}/views/partials`,
-  layoutsDir: `${__dirname}/views/layouts`,
-}));
+app.engine(
+  'hbs',
+  hbs.express4({
+    partialsDir: `${__dirname}/views/partials`,
+    layoutsDir: `${__dirname}/views/layouts`,
+    helpers: {
+      inc: function (value, options) {
+        return parseInt(value) + 1;
+      },
+    },
+  })
+);
+
 app.set('view engine', 'hbs');
 app.set('views', `${__dirname}/views`);
 
 // SESSION SET
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  store: new RedisStore({
-    client,
-    ttl: 260,
-  }),
-  resave: false,
-  saveUninitialized: false,
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store: new RedisStore({
+      client,
+      ttl: 260,
+    }),
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 // PASSPORT SET
 app.use(passport.initialize());
 app.use(passport.session()); // LOGIN SESSION
@@ -82,6 +93,10 @@ app.use((req, res, next) => {
 });
 app.use(flash()); // FOR FLASH MESSAGE
 
+// =============================== HANDLEBARS HELPERS ===============================
+hbs.registerHelper('inc', function (value, options) {
+  return parseInt(value) + 1;
+});
 // =============================== ROUTES ===============================
 app.get('/', (req, res) => {
   res.render('index.hbs', { req });

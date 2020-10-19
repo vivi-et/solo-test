@@ -10,7 +10,7 @@
     <h1>Add Product</h1>
     <br><br>
     <div id="mainoption">
-      {{> design_form_main}}
+      {{> design/design_form_main}}
     </div>
     <br>
     <div id="option">
@@ -29,7 +29,9 @@
 </form>
 <br><br>
 
-<button onclick="test()">TEST</button>
+<a href="/design/sample">
+<button >TEST</button>
+</a>
 
 <br><br><br>
 
@@ -54,19 +56,19 @@
 
   //SERIALIZEOBJECT(),  TRAMSFORM FORM DATA TO JSON OBJECT
   $.fn.serializeObject = function () {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function () {
-      if (o[this.name] !== undefined) {
-        if (!o[this.name].push) {
-          o[this.name] = [o[this.name]];
+    var obj = {};
+    var array = this.serializeArray();
+    $.each(array, function () {
+      if (obj[this.name] !== undefined) {
+        if (!obj[this.name].push) {
+          obj[this.name] = [obj[this.name]];
         }
-        o[this.name].push(this.value || '');
+        obj[this.name].push(this.value || '');
       } else {
-        o[this.name] = this.value || '';
+        obj[this.name] = this.value || '';
       }
     });
-    return o;
+    return obj;
   };
 
   //APPLY FORMANTIC UI SETTINGS TO APPENDED FORMS
@@ -108,7 +110,7 @@
       newOptionNo = optionsLimit
       return alert(`${newOptionNo} only!`);
     }
-    const html = `{{> design_form_option}}`;
+    const html = `{{> design/design_form_option}}`;
     $('#option').append(html)
     applyDropdownSettings();
     newOptionNo++;
@@ -228,7 +230,7 @@
       subOptionCountArr[thisOptionNo] = suboptionsLimit;
       return alert(`${suboptionsLimit} only!`);
     }
-    const html = `{{> design_form_suboption}}`;
+    const html = `{{> design/design_form_suboption}}`;
 
     $(_this).prev().append(html);
     applyDropdownSettings();

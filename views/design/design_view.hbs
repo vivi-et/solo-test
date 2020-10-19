@@ -1,0 +1,101 @@
+{{!< main}}
+
+<br><br><br>
+<div class="ui container">
+  {{#sample}}
+  <h2>
+    <br>id: {{id}}
+
+  </h2>
+  <br>category1: {{category1}}
+  <br>category2: {{category2}}
+  <br>category3: {{category3}}
+  <br>design_name: {{design_name}}
+  <br>price1: {{price1}}
+  <br>quantity: {{quantity}}
+  <br>timeperitem: {{timeperitem}}
+  <br>fee: {{fee}}
+  <br>fixfreechance:: {{fixfreechance}}
+  <br>fixprice: {{fixprice}}
+  <br>baseprice: {{baseprice}}
+  <br>skills: {{skills}}
+  <br>colorformat: {{colorformat}}
+  <br>width: {{width}}
+  <br>height: {{height}}
+  <br>format: {{format}}
+  <br>dpi: {{dpi}}
+  <br>keyword: {{keyword}}
+  <br>maindescription: {{maindescription}}
+
+  <br>
+  <br>image_main: <br>
+  <div class="ui tiny images">
+    <br>
+    <img class="ui image" src="/uploads/imgs/design/{{image_main}}">
+  </div>
+  <br>
+
+  image_sub: <br>
+  <span class="ui tiny images">
+    {{#each image_sub}}
+    <img class="ui image" src="/uploads/imgs/design/{{this}}">
+
+
+    {{/each}}
+  </span>
+  <hr>
+  <h2>
+    <br>options:
+  </h2>
+  {{#each options}}
+  <h2>
+    <br>option number: {{inc @index}}
+  </h2>
+  <br>optionname: {{optionname}}
+  <br>optiontype: {{optiontype}}
+  <br>image_option: {{image_option}}
+  <br>optiondescription: {{optiondescription}}
+  <br>image_option: <br>
+<br>
+  <div class="ui tiny images">
+    <img class="ui image" src="/uploads/imgs/design/{{image_option}}">
+  </div>
+
+  <br><br>
+  <h3>
+    suboptions:
+  </h3>
+  <br>
+  {{#each suboptions}}
+  <h3>
+    suboption number: {{inc @index}}
+
+  </h3>
+  <br>
+  <br>
+  suboptions1: {{suboption1}}
+  <br>
+  suboption2: {{suboption2}}
+  <br>
+  suboption3: {{suboption3}}
+  <br>
+  suboption4: {{suboption4}}
+  <br><br><br>
+  {{/each}}
+  <br><br>
+  <hr>
+  {{/each}}
+  <br>
+  <hr>
+  {{!-- {
+  "suboptions": [
+  {"suboption1": "1111111",  "suboption2": "plus", "suboption3": "222222", "suboption4": "krw"}, 
+  {"suboption1": "111111", "suboption2": "minus",  "suboption3": "222222", "suboption4": "krw"}
+  ]
+  } --}}
+
+  <br><br><br>
+
+  {{/sample}}
+
+</div>
